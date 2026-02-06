@@ -22,16 +22,10 @@ app.use(cookieParser());
 
 // ✅ Updated CORS configuration
 app.use(cors({
-    origin: [
-        "http://localhost:5173",
-        "http://localhost:3000",
-        // Add your production frontend URL here later
-        // "https://your-frontend.vercel.app"
-    ],
+    prigin: process.env.FRONTEND_URL ||
+    'http://localhost:5173',
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-    allowedHeaders: ["Content-Type", "Authorization"]
-}));
+}))
 
 // Import routes
 import authRouter from "./routes/auth.route.js";
