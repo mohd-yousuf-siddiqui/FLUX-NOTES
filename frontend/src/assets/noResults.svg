@@ -1,0 +1,80 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 1. Shared Glow/Atmosphere (Same as your Empty Note) -->
+    <filter id="glow-blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="60" result="blur" />
+    </filter>
+    <radialGradient id="back-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(256 256) rotate(90) scale(200)">
+      <stop stop-color="#4F46E5" stop-opacity="0.25" />
+      <stop offset="1" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- 2. Glass Surface Gradient -->
+    <linearGradient id="glass-surface" x1="100" y1="50" x2="400" y2="450" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.1" />
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.02" />
+    </linearGradient>
+
+    <!-- 3. Metallic Stroke Gradient -->
+    <linearGradient id="border-gradient" x1="100" y1="50" x2="400" y2="450" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.6" />
+      <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0.1" />
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.3" />
+    </linearGradient>
+
+    <!-- 4. Error/Search Gradient -->
+    <linearGradient id="search-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFFFFF" stop-opacity="0.4" />
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.1" />
+    </linearGradient>
+  </defs>
+
+  <!-- BACKGROUND GLOW -->
+  <circle cx="256" cy="256" r="180" fill="url(#back-glow)" filter="url(#glow-blur)" />
+
+  <!-- THE EMPTY PAPER (Background) -->
+  <g transform="translate(0, 10) opacity(0.5)">
+    <!-- Main Sheet -->
+    <rect x="146" y="106" width="220" height="300" rx="20" 
+          fill="url(#glass-surface)" 
+          stroke="url(#border-gradient)" 
+          stroke-width="1" 
+          opacity="0.5"/>
+    
+    <!-- Faint Grid Pattern (Implies a void) -->
+    <path d="M146 180H366 M146 250H366 M146 320H366" stroke="white" stroke-opacity="0.03" stroke-width="1" stroke-dasharray="4 4"/>
+    <path d="M220 106V406 M290 106V406" stroke="white" stroke-opacity="0.03" stroke-width="1" stroke-dasharray="4 4"/>
+  </g>
+
+  <!-- THE MAGNIFYING GLASS (Hero Object) -->
+  <g transform="translate(256, 256)">
+    
+    <!-- Handle Shadow -->
+    <path d="M30 30 L80 80" stroke="black" stroke-opacity="0.5" stroke-width="12" stroke-linecap="round" filter="url(#glow-blur)" transform="translate(10, 10)"/>
+
+    <!-- Handle Body -->
+    <path d="M28 28 L75 75" stroke="url(#border-gradient)" stroke-width="14" stroke-linecap="round" />
+    
+    <!-- Lens Ring (Outer) -->
+    <circle cx="-20" cy="-20" r="60" stroke="url(#border-gradient)" stroke-width="2" fill="url(#glass-surface)" />
+    
+    <!-- Lens Reflection (Glass Feel) -->
+    <path d="M-60 -20 A 40 40 0 0 1 -20 -60" stroke="white" stroke-opacity="0.3" stroke-width="3" stroke-linecap="round" />
+
+    <!-- THE 'NO RESULTS' CROSS (Inside the Lens) -->
+    <g opacity="0.8">
+        <path d="M-35 -35 L-5 -5" stroke="white" stroke-opacity="0.4" stroke-width="3" stroke-linecap="round">
+             <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3s" repeatCount="indefinite" />
+        </path>
+        <path d="M-5 -35 L-35 -5" stroke="white" stroke-opacity="0.4" stroke-width="3" stroke-linecap="round">
+             <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+        </path>
+    </g>
+
+    <!-- Floating Particles (Dust in the light) -->
+    <circle cx="50" cy="-50" r="2" fill="white" fill-opacity="0.5">
+       <animate attributeName="cy" values="-50;-60;-50" dur="4s" repeatCount="indefinite" />
+       <animate attributeName="opacity" values="0;0.8;0" dur="4s" repeatCount="indefinite" />
+    </circle>
+  </g>
+</svg>

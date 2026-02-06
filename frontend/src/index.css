@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import "tailwindcss";
+
+@layer base {
+
+    :root {
+  --bg-main: #0E0E10;
+  --bg-nav:  #111113;
+  --bg-card: #151517;
+  --bg-hover:#1B1B1F;
+
+  --border:  #26262C;
+
+  --text-primary:   #F5F5F5;
+  --text-secondary: #B3B3B3;
+  --text-muted:     #7A7A7A;
+
+  --accent:        #E6E6E6;
+  --accent-soft:   #afacac;
+  --accent-subtle: #9A9A9A;
+
+  --danger:  #D4D4D8;
+  --success: #EAEAEA;
+
+}
+
+    html {
+        font-family: "Poppins","sans-serif";
+    }
+
+    body {
+        background-color: var(--bg-main);   ;
+        color: var(--text-primary);
+        overflow-x: hidden;
+    }
+
+}
+
+
+.custom-scrollbar {
+    scrollbar-width: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar {
+    width: 5px;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-track {
+    background: #0a0a0a;
+    border-radius: 10px;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+    background: #333333;
+    border-radius: 10px;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb:hover {
+    background: #4a4a4a;
+}
+
+
+/* SAFE FLUX TOASTIFY STYLE */
+
+.Toastify__toast-container {
+  padding: 16px !important;
+}
+
+.Toastify__toast {
+  background-color: #09090b !important; /* Zinc-950 */
+  border: 1px solid #27272a !important; /* Zinc-800 */
+  border-radius: 12px !important;
+  color: #f4f4f5 !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  min-height: 50px !important;
+  margin-bottom: 12px !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Hide Progress Bar via CSS to prevents layout shift */
+.Toastify__progress-bar {
+  visibility: hidden !important;
+  height: 0 !important;
+}
+
+/* Success */
+.Toastify__toast--success {
+  border: 1px solid rgba(16, 185, 129, 0.3) !important;
+}
+.Toastify__toast--success .Toastify__toast-icon {
+  color: #10b981 !important;
+}
+
+/* Error */
+.Toastify__toast--error {
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+}
+.Toastify__toast--error .Toastify__toast-icon {
+  color: #ef4444 !important;
+}
+
+/* Close Button */
+.Toastify__close-button {
+  color: #71717a !important;
+}
+.Toastify__close-button:hover {
+  color: #fff !important;
+}
+
+@layer components {
+
+    .input-box {
+        @apply text-sm bg-(--bg-card) border-(--border) text-(--text-primary)
+          rounded-md px-5 py-3 outline-none
+          focus:border-(--text-primary)
+          transition-all duration-200
+          border-[1.5px] w-full;    
+    }
+
+
+    .btn-primary{
+        @apply w-full text-sm bg-(--accent) text-(--bg-main) font-medium rounded-md px-5 py-3 hover:bg-(--accent-soft) transition-all duration-200;
+    }
+
+    .icon-btn{
+        @apply text-xl text-(--text-secondary) cursor-pointer hover:text-blue-500;
+    }
+
+    .input-label{
+        @apply text-(--text-secondary) text-sm mb-1.5 font-medium;
+    }
+
+    .login-card{
+        @apply bg-(--bg-card) rounded-lg shadow-lg p-8 w-full max-w-md;
+    }
+}
