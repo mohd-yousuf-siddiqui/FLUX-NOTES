@@ -22,7 +22,7 @@ app.use(cookieParser());
 
 // ✅ Updated CORS configuration
 app.use(cors({
-    prigin: process.env.FRONTEND_URL ||
+    origin: process.env.FRONTEND_URL ||
     'http://localhost:5173',
     credentials: true,
 }))
