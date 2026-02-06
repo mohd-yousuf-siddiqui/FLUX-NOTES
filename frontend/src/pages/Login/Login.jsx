@@ -10,6 +10,9 @@ import { toast } from 'react-toastify'
 
 const Login = () => {
 
+
+  const apiURL = import.meta.env.VITE_BACKEND_URL
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
@@ -36,7 +39,7 @@ const Login = () => {
     //Login Api
       try {
         dispatch(signInStart)
-        const res = await axios.post("http://localhost:3000/api/auth/signin",
+        const res = await axios.post(`${apiURL}/auth/signin`,
         { email, password },
         { withCredentials: true }
       )

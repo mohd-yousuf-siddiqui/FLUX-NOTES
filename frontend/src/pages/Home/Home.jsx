@@ -15,6 +15,9 @@ import noResults from '../../assets/noResults.svg'
 
 const Home = () => {
 
+
+    const apiURL = import.meta.env.VITE_BACKEND_URL
+
     const { currentUser, loading, errorDispatch } = useSelector(
         (state) => state.user
     )
@@ -45,7 +48,7 @@ const Home = () => {
     // GET ALL NOTES API
     const getAllNotes = async () => {
         try {
-            const res = await axios.get("http://localhost:3000/api/note/all",
+            const res = await axios.get(`${apiURL}/note/all`,
                 { withCredentials: true }
             )
 
@@ -71,7 +74,7 @@ const Home = () => {
         const noteId = data._id
 
         try {
-            const res = await axios.delete("http://localhost:3000/api/note/delete/" + noteId, {
+            const res = await axios.delete(`${apiURL}/note/delete/` + noteId, {
                 withCredentials: true
             })
 
@@ -91,7 +94,7 @@ const Home = () => {
 
     const onSearchNote = async (query) => {
         try {
-            const res = await axios.get("http://localhost:3000/api/note/search",
+            const res = await axios.get(`${apiURL}/note/search`,
                 {
                     params: { query },
                     withCredentials: true
@@ -122,7 +125,7 @@ const Home = () => {
         const noteId = noteData._id
 
         try {
-            const res = await axios.put("http://localhost:3000/api/note/pinned-note/" + noteId,
+            const res = await axios.put(`${apiURL}/note/pinned-note/` + noteId,
                 {isPinned: !noteData.isPinned}, {withCredentials: true}
             )
 
@@ -149,7 +152,7 @@ const Home = () => {
 
             {/* Notes Grid */}
             <div className='container mx-auto'>
-                {allNotes.length > 0 ? (
+                {allNotes?.length > 0 ? (
                     <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 m-8'>
 
                         {allNotes.map((note, index) => (

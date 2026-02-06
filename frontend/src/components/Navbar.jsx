@@ -13,6 +13,9 @@ const Navbar = ({userInfo, onSearchNote, handleClearSearch}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const apiURL = import.meta.env.VITE_BACKEND_URL
+    
+    
     useEffect(() => {
         // Don't search if query is empty
         if (!searchQuery) {
@@ -40,7 +43,7 @@ const Navbar = ({userInfo, onSearchNote, handleClearSearch}) => {
 
       try {
         dispatch(signoutStart())
-        const res = await axios.get("http://localhost:3000/api/auth/signout", { withCredentials: true })
+        const res = await axios.get(`${apiURL}/auth/signout`, { withCredentials: true })
         if(res.data.success === false){
           dispatch(signoutFailure(res.data.message)); toast.error(res.data.message); return
         }

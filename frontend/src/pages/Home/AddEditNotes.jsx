@@ -11,11 +11,13 @@ const AddEditNotes = ({onClose, noteData, type, getAllNotes}) => {
     const [tags, setTags] =useState(noteData?.tags || [])
     const [error, setError] = useState(null)
 
+    const apiURL = import.meta.env.VITE_BACKEND_URL
+
     const editNote = async() => {
         const noteId = noteData._id
 
         try {
-            const res = await axios.post("http://localhost:3000/api/note/edit/" + noteId,{
+            const res = await axios.post(`${apiURL}/note/edit/` + noteId,{
                 title, content, tags}, {withCredentials: true}
             )
 
@@ -39,7 +41,7 @@ const AddEditNotes = ({onClose, noteData, type, getAllNotes}) => {
 
     const addNewNote = async() => {
         try {
-            const res = await axios.post("http://localhost:3000/api/note/add",{
+            const res = await axios.post(`${apiURL}/note/add`,{
                 title, content, tags}, {withCredentials: true}
             )
 
